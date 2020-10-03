@@ -12,7 +12,7 @@ const hunterSchema = new Schema({
   category: {
     type: String,
   },
-  images: {
+  image: {
     type: String,
   },
   location: {
