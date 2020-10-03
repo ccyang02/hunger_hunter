@@ -47,8 +47,8 @@ app.get('/restaurants/:restId/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:id/edit', (req, res) => {
-  const id = req.params.id
+app.post('/restaurants/:restId/edit', (req, res) => {
+  const id = req.params.restId
   return Hunter.findById(id)
     .then(restaurant => {
       restaurant.name = req.body.name
@@ -65,6 +65,13 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .then(() => {
       res.redirect(`/restaurants/${id}`)
     })
+    .catch(error => console.log(error))
+})
+
+app.post('/restaurants/:restId/delete', (req, res) => {
+  return Hunter.findById(req.params.restId)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
