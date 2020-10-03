@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <h3 class="m-4 font-weight-bold">編輯餐廳資訊</h3>
+  </div>
+  <div class="row">
+    <form action="/restaurants/{{restaurant._id}}/edit" method="POST" style="width: 100%;">
+      <div class="container">
+        <div class="row mt-2">
+          <label for="name" class="col-2 text-center pt-2">店名</label>
+          <input type="text" class="form-control col-10" name="name" placeholder="name" value="{{restaurant.name}}">
+        </div>
+        <div class="row mt-2">
+          <label for="name_en" class="col-2 text-center pt-2">英文店名</label>
+          <input type="text" class="form-control col-10" name="name_en" placeholder="name_en"
+            value="{{restaurant.name_en}}">
+        </div>
+        <div class="row mt-2">
+          <label for="category" class="col-2 text-center pt-2">類別</label>
+          <input type="text" class="form-control col-10" name="category" placeholder="category"
+            value="{{restaurant.category}}">
+        </div>
+        <div class="row mt-2">
+          <label for="image" class="col-2 text-center pt-2">店名</label>
+          <input type="text" class="form-control col-10" name="image" placeholder="image" value="{{restaurant.image}}">
+        </div>
+        <div class="row mt-2">
+          <label for="location" class="col-2 text-center pt-2">地點</label>
+          <input type="text" class="form-control col-10" name="location" placeholder="location"
+            value="{{restaurant.location}}">
+        </div>
+        <div class="row mt-2">
+          <label for="phone" class="col-2 text-center pt-2">電話</label>
+          <input type="text" class="form-control col-10" name="phone" placeholder="phone" value="{{restaurant.phone}}">
+        </div>
+        <div class="row mt-2">
+          <label for="google_map" class="col-2 text-center pt-2">Google Map 網址</label>
+          <input type="text" class="form-control col-10" name="google_map" placeholder="google_map"
+            value="{{restaurant.google_map}}">
+        </div>
+        <div class="row mt-2">
+          <label for="rating" class="col-2 text-center pt-2">評分</label>
+          <input type="text" class="form-control col-10" name="rating" placeholder="rating"
+            value="{{restaurant.rating}}">
+        </div>
+        <div class="row mt-2">
+          <label for="description" class="col-2 text-center pt-2">餐廳描述</label>
+          <textarea type="text" class="form-control col-10" name="description" placeholder="description">{{restaurant.description}}
+          </textarea>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end mt-4">
+        <button type="submit" class="btn btn-primary">存檔</button>
+        <a href="/" class="btn btn-secondary ml-2">返回</a>
+      </div>
+    </form>
+  </div>
+
+
+</div>
