@@ -6,9 +6,19 @@
     <form action="/create" method="POST" style="width: 100%;">
       <div class="container">
         {{#if errorMsg}}
+        {{!-- <div class="row">
+          <p class="col-12 text-center" style="color: red;">送出失敗: 請確認輸入必填項目 (店名、類別、評分、餐廳描述) 喔！</p>
+        </div> --}}
+
         <div class="row">
-          <p class="col-12 text-center" style="color: red;">送出失敗: 請確認輸入必填項目 (店名、餐廳描述) 喔！</p>
+          <div class="col-12 alert alert-danger alert-dismissible fade show" role="alert">
+            送出失敗: 請確認已經輸入必填項目 (店名、類別、評分、餐廳描述) 喔！
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
+
         {{/if}}
         <div class="row mt-2">
           <label for="name" class="col-2 text-center pt-2">店名</label>
@@ -20,7 +30,8 @@
         </div>
         <div class="row mt-2">
           <label for="category" class="col-2 text-center pt-2">類別</label>
-          <input type="text" class="form-control col-10" name="category" value="{{restaurant.category}}">
+          <input type="text" class="form-control col-10" name="category" placeholder="*必填"
+            value="{{restaurant.category}}">
         </div>
         <div class="row mt-2">
           <label for="image" class="col-2 text-center pt-2">相片</label>
@@ -40,7 +51,7 @@
         </div>
         <div class="row mt-2">
           <label for="rating" class="col-2 text-center pt-2">評分</label>
-          <input type="text" class="form-control col-10" name="rating" value="{{restaurant.rating}}">
+          <input type="text" class="form-control col-10" name="rating" placeholder="*必填" value="{{restaurant.rating}}">
         </div>
         <div class="row mt-2">
           <label for="description" class="col-2 text-center pt-2">餐廳描述</label>
