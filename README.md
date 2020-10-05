@@ -14,6 +14,8 @@ It's a restaurant website for practice with node.js, express.js and mongodb.
 
 - delete the restaurant card.
 
+- create a new restaurant to website.
+
   ![webpages](./public/images/capweb_v2.png)
 
 ### Getting Started
