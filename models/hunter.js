@@ -11,6 +11,7 @@ const hunterSchema = new Schema({
   },
   category: {
     type: String,
+    required: true
   },
   image: {
     type: String,
@@ -26,6 +27,7 @@ const hunterSchema = new Schema({
   },
   rating: {
     type: Number,
+    required: true
   },
   description: {
     type: String,

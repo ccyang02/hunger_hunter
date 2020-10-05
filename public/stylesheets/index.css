@@ -85,6 +85,20 @@ header {
 }
 
 
+.create-icon {
+  /* color: #DA0B0B; */
+  color: #9B4B4B;
+  position: fixed; 
+  right:5%; 
+  bottom: 5%;
+}
+
+.create-icon:hover {
+  color: #DA0B0B;
+  /* color: #BB2A2A; */
+  cursor: pointer;
+}
+
 @media screen and (max-width: 992px) {
   
   .card img{

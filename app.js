@@ -25,7 +25,6 @@ app.get('/', (req, res) => {
   Hunter.find()
     .lean()
     .then(restaurants => {
-      console.log(restaurants[0])
       res.render('index', { restaurants })
     })
     .catch(error => console.log(error))
@@ -51,15 +50,7 @@ app.post('/restaurants/:restId/edit', (req, res) => {
   const id = req.params.restId
   return Hunter.findById(id)
     .then(restaurant => {
-      restaurant.name = req.body.name
-      restaurant.name_en = req.body.name_en
-      restaurant.category = req.body.category
-      restaurant.image = req.body.image
-      restaurant.location = req.body.location
-      restaurant.phone = req.body.phone
-      restaurant.google_map = req.body.google_map
-      restaurant.rating = req.body.rating
-      restaurant.description = req.body.description
+      restaurant = Object.assign(restaurant, req.body)
       return restaurant.save()
     })
     .then(() => {
@@ -73,6 +64,23 @@ app.post('/restaurants/:restId/delete', (req, res) => {
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
+})
+
+app.get('/create', (req, res) => {
+  return res.render('create')
+})
+
+app.post('/create', (req, res) => {
+  let restaurant = {}
+  restaurant = Object.assign(restaurant, req.body)
+
+  Hunter.create(restaurant, function (error) {
+    if (error) {
+      return res.render('create', { restaurant, errorMsg: true })
+    } else {
+      return res.redirect('/')
+    }
+  })
 })
 
 app.get('/search', (req, res) => {
