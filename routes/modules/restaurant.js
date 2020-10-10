@@ -1,6 +1,9 @@
 const express = require('express')
-const router = express.Router()
+const methodOverride = require('method-override')
 const Hunter = require('../../models/hunter.js')
+const router = express.Router()
+
+router.use(methodOverride('_method'))
 
 router.get('/:restId', (req, res) => {
   const id = req.params.restId
@@ -18,7 +21,7 @@ router.get('/:restId/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-router.post('/:restId/edit', (req, res) => {
+router.put('/:restId/edit', (req, res) => {
   const id = req.params.restId
   return Hunter.findById(id)
     .then(restaurant => {
@@ -31,7 +34,7 @@ router.post('/:restId/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-router.post('/:restId/delete', (req, res) => {
+router.delete('/:restId/delete', (req, res) => {
   return Hunter.findById(req.params.restId)
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))

@@ -15,7 +15,7 @@ router.post('/create', (req, res) => {
   console.log(`I got ${req.body}`)
   Hunter.create(restaurant, function (error) {
     if (error) {
-      // console.log(error)
+      console.log(error)
       return res.render('create', { restaurant, errorMsg: true })
     } else {
       return res.redirect('/')

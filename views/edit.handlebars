@@ -3,7 +3,7 @@
     <h3 class="m-4 font-weight-bold">編輯餐廳資訊</h3>
   </div>
   <div class="row">
-    <form action="/restaurants/{{restaurant._id}}/edit" method="POST" style="width: 100%;">
+    <form action="/restaurants/{{restaurant._id}}/edit?_method=put" method="POST" style="width: 100%;">
       <div class="container">
         <div class="row mt-2">
           <label for="name" class="col-2 text-center pt-2">店名</label>
