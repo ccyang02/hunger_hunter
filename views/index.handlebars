@@ -14,7 +14,25 @@
       </form>
     </div>
   </div>
-</div>
+  <div class="col-md-10 col-12 mx-auto">
+    <div class="row justify-content-end">
+      <div class="dropdown mt-3 pr-1">
+        <button class="btn dropdown-toggle btn-dropdown" type="button" href="#" data-toggle="dropdown"
+          data-abbr="default">
+          排序
+        </button>
+        <div class="dropdown-menu sort-menu">
+          <a class="dropdown-item" href="/sort/{{keyword}}/name/asc">店名：正序</a>
+          <a class="dropdown-item" href="/sort/{{keyword}}/name/desc/">店名：反序</a>
+          <a class="dropdown-item" href="/sort/{{keyword}}/category/asc">類別：正序</a>
+          <a class="dropdown-item" href="/sort/{{keyword}}/category/desc">類別：反序</a>
+          <a class="dropdown-item" href="/sort/{{keyword}}/rating/desc">評分：由高至低</a>
+          <a class="dropdown-item" href="/sort/{{keyword}}/rating/asc">評分：由低至高</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>>
 
 <!-- restaurant list -->
 <div class="container mt-5">

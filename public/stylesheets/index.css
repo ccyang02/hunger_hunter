@@ -4,12 +4,18 @@ header {
   overflow: hidden;
 }
 
+.navbar {
+  background-color: #b46b6b !important;
+}
+
 .navbar .navbar-brand {
-  color: #4592af;
+  /* color: #4592af; */
+  color: #fce2cf !important;
 }
 
 .navbar .navbar-brand:hover {
-  color: #226089;
+  /* color: #226089; */
+  color:#f0bf9d !important;
 }
 
 .banner {
@@ -86,17 +92,32 @@ header {
 
 
 .create-icon {
-  /* color: #DA0B0B; */
-  color: #9B4B4B;
+  color: #3f859e;
   position: fixed; 
   right:5%; 
   bottom: 5%;
 }
 
 .create-icon:hover {
-  color: #DA0B0B;
-  /* color: #BB2A2A; */
+  color: #265161;
   cursor: pointer;
+}
+
+.btn-dropdown {
+  color: #fff;
+  background-color: #9B4B4B;
+  border-color: #9B4B4B;
+  width: 160px;
+}
+
+.btn-dropdown:hover {
+  color: #fff;
+  background-color: #773c3c;
+  border-color: #773c3c;
+}
+
+.sort-menu{
+  width: 100%;
 }
 
 @media screen and (max-width: 992px) {

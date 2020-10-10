@@ -37,4 +37,23 @@ router.get('/search', (req, res) => {
     .catch(error => console.log(error))
 })
 
+router.get('/sort/:keyword/:column/:order', (req, res) => {
+  const keyword = req.params.keyword
+  const column = req.params.column /* name, category, rating */
+  const order = req.params.order /* asc, desc */
+
+  // console.log(req.params)
+  Hunter.find()
+    .lean()
+    .sort({ [column]: order })
+    .then(elements => elements.filter(element => {
+      return element.name.toLowerCase().includes(keyword) ||
+        element.category.toLowerCase().includes(keyword) ||
+        element.location.toLowerCase().includes(keyword) ||
+        element.description.toLowerCase().includes(keyword)
+    }))
+    .then(restaurants => res.render('index', { restaurants, keyword }))
+    .catch(error => console.log(error))
+})
+
 module.exports = router
