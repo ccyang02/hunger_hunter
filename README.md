@@ -6,9 +6,9 @@ It's a restaurant website for practice with node.js, express.js and mongodb.
 
 - see all the restaurant name, category, rating and description in our datasets.
 
-- click the card or detail button to see restaurant details, such as address and phone number.
+- click the card or detail button to see restaurant information, such as address and phone number.
 
-- search restaurant by the keyword.
+- search restaurant.
 
 - edit the restaurant information.
 
@@ -16,7 +16,9 @@ It's a restaurant website for practice with node.js, express.js and mongodb.
 
 - create a new restaurant to website.
 
-  ![webpages](./public/images/capweb_v2.png)
+- sort the information of restaurants.
+
+  ![webpages](./public/images/capweb_v3.png)
 
 ### Getting Started
 
