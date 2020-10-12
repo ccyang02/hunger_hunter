@@ -7,9 +7,9 @@
       <div class="container">
         {{#if errorMsg}}
 
-        <div class="row">
-          <div class="col-12 alert alert-danger alert-dismissible fade show" role="alert">
-            送出失敗: 請確認已經輸入必填項目 (店名、類別、評分、餐廳描述) 且評分只能輸入數字喔！
+        <div class="row justify-content-center">
+          <div class="col-11 alert alert-danger alert-dismissible fade show" role="alert">
+            送出失敗: 請確認已經輸入必填項目 (店名、類別、評分、餐廳描述) 且評分僅接受數值輸入喔！
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -43,12 +43,14 @@
           <input type="text" class="form-control col-10" name="phone" value="{{restaurant.phone}}">
         </div>
         <div class="row mt-2 mr-2">
-          <label for="google_map" class="col-2 text-center pt-2">Google Map 網址</label>
-          <input type="text" class="form-control col-10" name="google_map" value="{{restaurant.google_map}}">
+          <label for="google_map" class="col-2 text-center pt-2">網址</label>
+          <input type="text" class="form-control col-10" name="google_map" value="{{restaurant.google_map}}"
+            placeholder="Google Map 網址">
         </div>
         <div class="row mt-2 mr-2">
           <label for="rating" class="col-2 text-center pt-2">評分</label>
-          <input type="text" class="form-control col-10" name="rating" placeholder="*必填" value="{{restaurant.rating}}">
+          <input type="text" class="form-control col-10" name="rating" placeholder="*必填，需為數值"
+            value="{{restaurant.rating}}">
         </div>
         <div class="row mt-2 mr-2">
           <label for="description" class="col-2 text-center pt-2">餐廳描述</label>

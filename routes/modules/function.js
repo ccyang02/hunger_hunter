@@ -28,29 +28,24 @@ router.get('/search', (req, res) => {
   return Hunter.find()
     .lean()
     .then(elements => elements.filter(element => {
-      return element.name.toLowerCase().includes(keyword) ||
-        element.category.toLowerCase().includes(keyword) ||
-        element.location.toLowerCase().includes(keyword) ||
-        element.description.toLowerCase().includes(keyword)
+      return element.name.toLowerCase().includes(keyword)
     }))
     .then(restaurants => res.render('index', { restaurants, keyword }))
     .catch(error => console.log(error))
 })
 
-router.get('/sort/:keyword/:column/:order', (req, res) => {
-  const keyword = req.params.keyword
-  const column = req.params.column /* name, category, rating */
-  const order = req.params.order /* asc, desc */
-
-  // console.log(req.params)
+router.get('/sort/:query', (req, res) => {
+  const tokens = req.params.query.split('-')
+  let column, order, keywords
+  // column: name, category, rating
+  // order: asc, desc
+  [column, order, ...keywords] = tokens
+  const keyword = keywords.join('-')
   Hunter.find()
     .lean()
     .sort({ [column]: order })
     .then(elements => elements.filter(element => {
-      return element.name.toLowerCase().includes(keyword) ||
-        element.category.toLowerCase().includes(keyword) ||
-        element.location.toLowerCase().includes(keyword) ||
-        element.description.toLowerCase().includes(keyword)
+      return element.name.toLowerCase().includes(keyword)
     }))
     .then(restaurants => res.render('index', { restaurants, keyword }))
     .catch(error => console.log(error))
