@@ -23,6 +23,9 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(routes)
 
+const usePassport = require('./config/passport')
+usePassport(app)
+
 mongoose.connect('mongodb://localhost/hunter', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 db.on('error', () => {
