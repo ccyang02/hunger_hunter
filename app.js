@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 
 const routes = require('./routes')
 const Hunter = require('./models/hunter.js')
+const usePassport = require('./config/passport')
 
 const port = 3000
 const app = express()
@@ -19,12 +20,12 @@ app.use(session({
   saveUninitialized: true
 }))
 
+// remember it should be before routers
+usePassport(app)
+
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(routes)
-
-const usePassport = require('./config/passport')
-usePassport(app)
 
 mongoose.connect('mongodb://localhost/hunter', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection

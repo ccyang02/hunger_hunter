@@ -4,11 +4,12 @@ const home = require('./modules/home')
 const func = require('./modules/function')
 const restaurant = require('./modules/restaurant')
 const user = require('./modules/user')
+const { authenticator } = require('../middleware/auth')
 
-router.use('/restaurants', restaurant)
+router.use('/restaurants', authenticator, restaurant)
 router.use('/users', user)
-router.use('/', home)
+router.use('/', authenticator, home)
 // 和功能性相關
-router.use('/', func)
+router.use('/', authenticator, func)
 
 module.exports = router
