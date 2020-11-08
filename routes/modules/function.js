@@ -12,7 +12,8 @@ router.get('/create', (req, res) => {
 router.post('/create', (req, res) => {
   let restaurant = {}
   restaurant = Object.assign(restaurant, req.body)
-  console.log(`I got ${req.body}`)
+  restaurant.userId = req.user._id // add info about corresponding data owner
+  // console.log(`I got ${req.body}`)
   Hunter.create(restaurant, function (error) {
     if (error) {
       console.log(error)
@@ -25,7 +26,8 @@ router.post('/create', (req, res) => {
 
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim().toLowerCase()
-  return Hunter.find()
+  const userId = req.user._id
+  return Hunter.find({ userId })
     .lean()
     .then(elements => elements.filter(element => {
       return element.name.toLowerCase().includes(keyword)
@@ -41,7 +43,8 @@ router.get('/sort/:query', (req, res) => {
   // order: asc, desc
   [column, order, ...keywords] = tokens
   const keyword = keywords.join('-')
-  Hunter.find()
+  const userId = req.user._id
+  Hunter.find({ userId })
     .lean()
     .sort({ [column]: order })
     .then(elements => elements.filter(element => {

@@ -6,24 +6,27 @@ const router = express.Router()
 router.use(methodOverride('_method'))
 
 router.get('/:restId', (req, res) => {
-  const id = req.params.restId
-  return Hunter.findById(id)
+  const userId = req.user._id
+  const _id = req.params.restId
+  return Hunter.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('show', { restaurant }))
     .catch(error => console.log(error))
 })
 
 router.get('/:restId/edit', (req, res) => {
-  const id = req.params.restId
-  return Hunter.findById(id)
+  const userId = req.user._id
+  const _id = req.params.restId
+  return Hunter.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('edit', { restaurant }))
     .catch(error => console.log(error))
 })
 
 router.put('/:restId/edit', (req, res) => {
-  const id = req.params.restId
-  return Hunter.findById(id)
+  const userId = req.user._id
+  const _id = req.params.restId
+  return Hunter.findOne({ _id, userId })
     .then(restaurant => {
       restaurant = Object.assign(restaurant, req.body)
       return restaurant.save()
@@ -35,7 +38,9 @@ router.put('/:restId/edit', (req, res) => {
 })
 
 router.delete('/:restId/delete', (req, res) => {
-  return Hunter.findById(req.params.restId)
+  const userId = req.user._id
+  const _id = req.params.restId
+  return Hunter.findOne({ _id, userId })
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))

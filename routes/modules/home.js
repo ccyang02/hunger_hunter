@@ -3,7 +3,8 @@ const router = express.Router()
 const Hunter = require('../../models/hunter.js')
 
 router.get('/', (req, res) => {
-  Hunter.find()
+  const userId = req.user._id
+  Hunter.find({ userId })
     .lean()
     .sort({ _id: 'asc' })
     .then(restaurants => {
