@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <div class="card log-card">
+    <div class="card-header">
+      <h1 class="display-4">Register</h1>
+    </div>
+
+    <div class="card-body text-center">
+      <form action="/users/register" method="post">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="name" placeholder="Enter name">
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="email" placeholder="Enter email">
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="password" placeholder="Enter password">
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="confirmPassword" placeholder="Confirm your password">
+        </div>
+        <input class="btn btn-primary log-btn" type="submit" value="Register" />
+      </form>
+    </div>
+
+    <div class="card-footer text-center">
+      <p class="text-muted" style="margin: 0 auto">Back to <a href="/users/login">Login</a></p>
+    </div>
+  </div>
+</div>
