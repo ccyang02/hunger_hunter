@@ -5,6 +5,7 @@
     </div>
 
     <div class="card-body text-center">
+      {{> message}}
       <form action="/users/register" method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="name" placeholder="Enter name" value="{{name}}">
