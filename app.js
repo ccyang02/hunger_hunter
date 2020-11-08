@@ -10,8 +10,8 @@ const port = 3000
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
-app.use(routes)
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(routes)
 
 mongoose.connect('mongodb://localhost/hunter', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
