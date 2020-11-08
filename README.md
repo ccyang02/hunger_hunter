@@ -18,7 +18,9 @@ It's a restaurant website for practice with node.js, express.js and mongodb.
 
 - sort the information of restaurants.
 
-  ![webpages](./public/images/capweb_v3.png)
+- register your account and login with your account.
+
+  ![webpages](./public/images/capweb_v4.png)
 
 ### Getting Started
 
