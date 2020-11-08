@@ -2,12 +2,11 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
 const bodyParser = require('body-parser')
-// const mongoose = require('mongoose')
-
 const routes = require('./routes')
-const Hunter = require('./models/hunter.js')
+
 const usePassport = require('./config/passport')
 const flash = require('connect-flash')
+
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -25,8 +24,7 @@ app.use(session({
   saveUninitialized: true
 }))
 
-
-// remember it should be before routers
+// before routers
 usePassport(app)
 app.use(flash())
 
