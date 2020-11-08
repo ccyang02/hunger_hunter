@@ -1,14 +1,24 @@
 const express = require('express')
-const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const session = require('express-session')
 const bodyParser = require('body-parser')
-const Hunter = require('./models/hunter.js')
+const mongoose = require('mongoose')
+
 const routes = require('./routes')
-const app = express()
+const Hunter = require('./models/hunter.js')
+
 const port = 3000
+const app = express()
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+
+app.use(session({
+  secret: 'HiiiiyaSecret',
+  resave: false,
+  saveUninitialized: true
+}))
+
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(routes)
