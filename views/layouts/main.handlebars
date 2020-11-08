@@ -27,7 +27,7 @@
       <div class="nav-right d-flex">
         <div class="mr-3 align-self-center" style="color: #ffffff ">
           Welcome,
-          {{#if isAuthenticated}}{{user.name}}{{else}}guest{{/if}}
+          {{#if isAuthenticated}}{{#if user.name}}{{user.name}}{{else}}No Name{{/if}}{{else}}guest{{/if}}
         </div>
         <div>
           {{#if isAuthenticated}}
