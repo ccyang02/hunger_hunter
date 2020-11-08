@@ -8,8 +8,11 @@ const routes = require('./routes')
 const Hunter = require('./models/hunter.js')
 const usePassport = require('./config/passport')
 const flash = require('connect-flash')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
-const port = 3000
+const port = process.env.PORT
 const app = express()
 require('./config/mongoose')
 
@@ -17,7 +20,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.use(session({
-  secret: 'HiiiiyaSecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
