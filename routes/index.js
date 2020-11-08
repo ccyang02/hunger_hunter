@@ -8,8 +8,8 @@ const { authenticator } = require('../middleware/auth')
 
 router.use('/restaurants', authenticator, restaurant)
 router.use('/users', user)
-router.use('/', authenticator, home)
 // 和功能性相關
 router.use('/', authenticator, func)
+router.use('/', authenticator, home)
 
 module.exports = router
