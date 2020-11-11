@@ -18,44 +18,103 @@
 
         {{/if}}
         <div class="row mt-2 mr-2">
-          <label for="name" class="col-2 text-center pt-2">店名</label>
-          <input type="text" class="form-control col-10" name="name" placeholder="*必填" value="{{restaurant.name}}">
+          <div class="input-group mb-3">
+            <label for="name" class="col-2 text-center pt-2">店名</label>
+            <input type="text" class="form-control col-10" name="name" placeholder="*必填" value="{{restaurant.name}}">
+          </div>
+
         </div>
-        <div class="row mt-2 mr-2">
-          <label for="name_en" class="col-2 text-center pt-2">英文店名</label>
-          <input type="text" class="form-control col-10" name="name_en" value="{{restaurant.name_en}}">
+        <div class="row mr-2">
+          <div class="input-group mb-3">
+            <label for="name_en" class="col-2 text-center pt-2">英文店名</label>
+            <input type="text" class="form-control col-10" name="name_en" value="{{restaurant.name_en}}">
+          </div>
         </div>
-        <div class="row mt-2 mr-2">
-          <label for="category" class="col-2 text-center pt-2">類別</label>
-          <input type="text" class="form-control col-10" name="category" placeholder="*必填"
-            value="{{restaurant.category}}">
+
+        <div class="row mr-2">
+          <div class="col-12 form-group" style="display: flex; padding: 0px">
+            <label for="category" class="col-2 text-center pt-2">類別</label>
+            <select class="col-10 form-control" id="category" name="category">
+              <option>中式</option>
+              <option>西式</option>
+              <option>美式</option>
+              <option>日式</option>
+              <option>港式</option>
+              <option>泰式</option>
+              <option>其它</option>
+            </select>
+          </div>
         </div>
-        <div class="row mt-2 mr-2">
-          <label for="image" class="col-2 text-center pt-2">相片</label>
-          <input type="text" class="form-control col-10" name="image" value="{{restaurant.image}}">
+
+        <div class="row mr-2">
+          <div class="input-group mb-3">
+            <label for="image" class="col-2 text-center pt-2">相片</label>
+            <input type="text" class="form-control col-10" name="image" value="{{restaurant.image}}">
+          </div>
         </div>
-        <div class="row mt-2 mr-2">
-          <label for="location" class="col-2 text-center pt-2">地點</label>
-          <input type="text" class="form-control col-10" name="location" value="{{restaurant.location}}">
+
+        <div class="row mr-2">
+          <div class="input-group mb-3">
+            <label for="location" class="col-2 text-center pt-2">地點</label>
+            <input type="text" class="form-control col-10" name="location" value="{{restaurant.location}}">
+          </div>
         </div>
-        <div class="row mt-2 mr-2">
-          <label for="phone" class="col-2 text-center pt-2">電話</label>
-          <input type="text" class="form-control col-10" name="phone" value="{{restaurant.phone}}">
+
+        <div class="row mr-2">
+          <div class="input-group mb-3">
+            <label for="phone" class="col-2 text-center pt-2">電話</label>
+            <input type="text" class="form-control col-10" name="phone" value="{{restaurant.phone}}">
+          </div>
         </div>
-        <div class="row mt-2 mr-2">
-          <label for="google_map" class="col-2 text-center pt-2">網址</label>
-          <input type="text" class="form-control col-10" name="google_map" value="{{restaurant.google_map}}"
-            placeholder="Google Map 網址">
+
+        <div class="row mr-2">
+          <div class="input-group mb-3">
+            <label for="google_map" class="col-2 text-center pt-2">網址</label>
+            <input type="text" class="form-control col-10" name="google_map" value="{{restaurant.google_map}}"
+              placeholder="Google Map 網址">
+          </div>
         </div>
-        <div class="row mt-2 mr-2">
-          <label for="rating" class="col-2 text-center pt-2">評分</label>
-          <input type="text" class="form-control col-10" name="rating" placeholder="*必填，需為數值"
-            value="{{restaurant.rating}}">
+
+        <div class="row mr-2">
+
+          <div class="input-group mb-3">
+            <label for="rating" class="col-2 text-center pt-2">評分</label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating" id="rating1" value="1">
+              <label class="form-check-label" for="rating1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating" id="rating2" value="2">
+              <label class="form-check-label" for="rating2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating" id="rating3" value="3">
+              <label class="form-check-label" for="rating3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating" id="rating4" value="4">
+              <label class="form-check-label" for="rating4">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating" id="rating5" value="5">
+              <label class="form-check-label" for="rating5">5</label>
+            </div>
+
+
+          </div>
+          {{!-- <div class="input-group mb-3">
+            <label for="rating" class="col-2 text-center pt-2">評分</label>
+            <input type="number" class="form-control col-10" name="rating" value="{{restaurant.rating}}" min="1" max="5"
+              placeholder="*必填，評級 1星到 5星">
+          </div> --}}
         </div>
-        <div class="row mt-2 mr-2">
-          <label for="description" class="col-2 text-center pt-2">餐廳描述</label>
-          <textarea type="text" class="form-control col-10" name="description"
-            placeholder="*必填">{{restaurant.description}}</textarea>
+
+        <div class="row mr-2">
+          <div class="input-group mb-3">
+            <label for="description" class="col-2 text-center pt-2">餐廳描述</label>
+            <textarea type="text" class="form-control col-10" name="description"
+              placeholder="*必填">{{restaurant.description}}</textarea>
+          </div>
         </div>
       </div>
 
