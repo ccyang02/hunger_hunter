@@ -2,6 +2,7 @@ const express = require('express')
 const methodOverride = require('method-override')
 const Hunter = require('../../models/hunter.js')
 const router = express.Router()
+const data = require('../../models/data/default')
 
 router.use(methodOverride('_method'))
 
@@ -19,7 +20,7 @@ router.get('/:restId/edit', (req, res) => {
   const _id = req.params.restId
   return Hunter.findOne({ _id, userId })
     .lean()
-    .then(restaurant => res.render('edit', { restaurant }))
+    .then(restaurant => res.render('edit', { restaurant, categories: data.categories }))
     .catch(error => console.log(error))
 })
 

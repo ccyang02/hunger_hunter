@@ -2,11 +2,12 @@ const express = require('express')
 const router = express.Router()
 const Hunter = require('../../models/hunter.js')
 const bodyParser = require('body-parser')
+const data = require('../../models/data/default')
 
 router.use(bodyParser.urlencoded({ extended: true }))
 
 router.get('/create', (req, res) => {
-  return res.render('create')
+  return res.render('create', { categories: data.categories })
 })
 
 router.post('/create', (req, res) => {
