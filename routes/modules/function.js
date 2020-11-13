@@ -39,12 +39,18 @@ router.post('/create', [
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim().toLowerCase()
   const userId = req.user._id
-  return Hunter.find({ userId })
+
+  const query =
+  {
+    $or: [
+      { name: { $regex: keyword, $options: '$i' }, userId },
+    ]
+  }
+  return Hunter.find(query)
     .lean()
-    .then(elements => elements.filter(element => {
-      return element.name.toLowerCase().includes(keyword)
-    }))
-    .then(restaurants => res.render('index', { restaurants, keyword }))
+    .then(restaurants => {
+      return res.render('index', { restaurants, keyword })
+    })
     .catch(error => {
       console.log(error)
       return res.end()
@@ -59,17 +65,34 @@ router.get('/sort/:query', (req, res) => {
   [column, order, ...keywords] = tokens
   const keyword = keywords.join('-')
   const userId = req.user._id
-  Hunter.find({ userId })
+
+  const query =
+  {
+    $or: [
+      { name: { $regex: keyword, $options: '$i' }, userId },
+    ],
+  }
+
+  Hunter.find(query)
     .lean()
     .sort({ [column]: order })
-    .then(elements => elements.filter(element => {
-      return element.name.toLowerCase().includes(keyword)
-    }))
     .then(restaurants => res.render('index', { restaurants, keyword }))
     .catch(error => {
       console.log(error)
       return res.end()
     })
+
+  // Hunter.find({ userId })
+  //   .lean()
+  //   .sort({ [column]: order })
+  //   .then(elements => elements.filter(element => {
+  //     return element.name.toLowerCase().includes(keyword)
+  //   }))
+  //   .then(restaurants => res.render('index', { restaurants, keyword }))
+  //   .catch(error => {
+  //     console.log(error)
+  //     return res.end()
+  //   })
 })
 
 module.exports = router
