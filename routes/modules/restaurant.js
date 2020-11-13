@@ -39,20 +39,17 @@ router.put('/:restId/edit', [
   const errors = validationResult(req)
   const userId = req.user._id
   const _id = req.params.restId
-
   if (!errors.isEmpty()) {
     return res.redirect(`/restaurants/${_id}/edit`)
   } else {
     const updateRest = req.body
     updateRest.userId = userId
-    Hunter.findOne({ _id, userId })
+    Hunter.findById({ _id, userId })
       .then(restaurant => {
         Object.assign(restaurant, updateRest)
         return restaurant.save()
       })
-      .then(() => {
-        return res.redirect(`/restaurants/${_id}`)
-      })
+      .then(() => res.redirect(`/restaurants/${_id}/edit`))
       .catch(error => {
         console.log(error)
         return res.end()
