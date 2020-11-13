@@ -7,13 +7,16 @@ const { body, validationResult } = require('express-validator')
 
 router.use(methodOverride('_method'))
 
-router.get('/:restId', (req, res) => {
+router.get('/:restId', (req, res, next) => {
   const userId = req.user._id
   const _id = req.params.restId
   return Hunter.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('show', { restaurant }))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      return res.end()
+    })
 })
 
 router.get('/:restId/edit', (req, res) => {
@@ -22,7 +25,10 @@ router.get('/:restId/edit', (req, res) => {
   return Hunter.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('edit', { restaurant, selector: data.categories }))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      return res.end()
+    })
 })
 
 router.put('/:restId/edit', [
@@ -49,6 +55,7 @@ router.put('/:restId/edit', [
       })
       .catch(error => {
         console.log(error)
+        return res.end()
       })
     // return Hunter.findByIdAndUpdate(_id, updateRest, { new: true }) // 遇到一個問題，當要直接用 Hunter 時會造成 Schema 物件直接更新存在安全性
     //   .then(() => {
@@ -64,7 +71,10 @@ router.delete('/:restId/delete', (req, res) => {
   return Hunter.findOne({ _id, userId })
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      return res.end()
+    })
 })
 
 module.exports = router

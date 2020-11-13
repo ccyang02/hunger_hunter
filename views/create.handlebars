@@ -6,10 +6,9 @@
     <form action="/create" method="POST" style="width: 100%;">
       <div class="container">
         {{#if errorMsg}}
-
         <div class="row justify-content-center">
           <div class="col-11 alert alert-danger alert-dismissible fade show" role="alert">
-            送出失敗: 請確認已經輸入必填項目 (店名、類別、評分、餐廳描述) 且評分僅接受數值輸入喔！
+            {{errorMsg}}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

@@ -2,6 +2,7 @@ const express = require('express')
 const passport = require('passport')
 const bcrypt = require('bcryptjs')
 const router = express.Router()
+const msgStatus = require('../../models/data/messages')
 const User = require('../../models/user')
 
 router.get('/login', (req, res) => {
@@ -22,10 +23,10 @@ router.post('/register', (req, res) => {
   const regInfo = Object.assign(req.body)
   const errors = []
   if (!regInfo.email || !regInfo.password || !regInfo.confirmPassword) {
-    errors.push({ message: '信箱與密碼是必填。' })
+    errors.push({ message: msgStatus.registerFail.incomplete })
   }
   if (regInfo.password !== regInfo.confirmPassword) {
-    errors.push({ message: '密碼與確認密碼不相符！' })
+    errors.push({ message: msgStatus.registerFail.notMatched })
   }
   if (errors.length) {
     regInfo.errors = errors
@@ -34,7 +35,7 @@ router.post('/register', (req, res) => {
   User.findOne({ email: regInfo.email })
     .then(user => {
       if (user) {
-        errors.push({ message: '這個 Email 已經註冊過了。' })
+        errors.push({ message: msgStatus.registerFail.duplicated })
         regInfo.errors = errors
         return res.render('register', regInfo)
       }
@@ -47,13 +48,16 @@ router.post('/register', (req, res) => {
           User.create(regInfo)
         })
         .then(() => res.redirect('/'))
-        .catch(error => console.log(error))
+        .catch(error => {
+          console.log(error)
+          return res.end()
+        })
     })
 })
 
 router.get('/logout', (req, res) => {
   req.logout()
-  req.flash('success_msg', '成功登出。')
+  req.flash('success_msg', msgStatus.registerFail.pass)
   res.redirect('/users/login')
 })
 

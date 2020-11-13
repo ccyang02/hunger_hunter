@@ -10,7 +10,10 @@ router.get('/', (req, res) => {
     .then(restaurants => {
       res.render('index', { restaurants })
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      return res.end()
+    })
 })
 
 module.exports = router
