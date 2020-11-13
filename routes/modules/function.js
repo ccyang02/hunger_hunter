@@ -81,18 +81,6 @@ router.get('/sort/:query', (req, res) => {
       console.log(error)
       return res.end()
     })
-
-  // Hunter.find({ userId })
-  //   .lean()
-  //   .sort({ [column]: order })
-  //   .then(elements => elements.filter(element => {
-  //     return element.name.toLowerCase().includes(keyword)
-  //   }))
-  //   .then(restaurants => res.render('index', { restaurants, keyword }))
-  //   .catch(error => {
-  //     console.log(error)
-  //     return res.end()
-  //   })
 })
 
 module.exports = router
