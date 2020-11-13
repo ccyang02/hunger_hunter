@@ -54,11 +54,6 @@ router.put('/:restId/edit', [
         console.log(error)
         return res.end()
       })
-    // return Hunter.findByIdAndUpdate(_id, updateRest, { new: true }) // 遇到一個問題，當要直接用 Hunter 時會造成 Schema 物件直接更新存在安全性
-    //   .then(() => {
-    //     res.redirect(`/restaurants/${_id}`)
-    //   })
-    //   .catch(error => console.log(error))
   }
 })
 
