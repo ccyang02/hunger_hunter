@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 const router = express.Router()
 const msgStatus = require('../../models/data/messages')
 const User = require('../../models/user')
+const { check, validationResult } = require('express-validator')
 
 router.get('/login', (req, res) => {
   return res.render('login')
@@ -19,33 +20,41 @@ router.get('/register', (req, res) => {
   return res.render('register')
 })
 
-router.post('/register', (req, res) => {
-  const regInfo = Object.assign(req.body)
-  const errors = []
-  if (!regInfo.email || !regInfo.password || !regInfo.confirmPassword) {
-    errors.push({ message: msgStatus.registerFail.incomplete })
+router.post('/register', [
+  check('email').isEmail().withMessage(msgStatus.registerFail.incompleteMail),
+  check('password').isLength({ min: 3, max: 8 }).withMessage(msgStatus.registerFail.incompletePwd),
+  check('confirmPassword')
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error(msgStatus.registerFail.notMatched)
+      }
+      return true
+    }),
+
+], (req, res) => {
+  const errorResults = validationResult(req)
+  if (!errorResults.isEmpty()) {
+    const errors = errorResults.errors.map(error => error.msg).join(', ')
+    req.body.regErr = errors
+    return res.render('register', req.body)
   }
-  if (regInfo.password !== regInfo.confirmPassword) {
-    errors.push({ message: msgStatus.registerFail.notMatched })
-  }
-  if (errors.length) {
-    regInfo.errors = errors
-    return res.render('register', regInfo)
-  }
+
+  // acquire data in need
+  const regInfo = { email: req.body.email, password: req.body.password }
+  if (req.body.name) regInfo.name = req.body.name
+
   User.findOne({ email: regInfo.email })
     .then(user => {
       if (user) {
-        errors.push({ message: msgStatus.registerFail.duplicated })
-        regInfo.errors = errors
-        return res.render('register', regInfo)
+        req.body.regErr = msgStatus.registerFail.duplicated
+        return res.render('register', req.body)
       }
       return bcrypt
         .genSalt(10)
         .then(salt => bcrypt.hash(regInfo.password, salt))
         .then(hash => {
-          delete regInfo.confirmPassword
           regInfo.password = hash
-          User.create(regInfo)
+          return User.create(regInfo)
         })
         .then(() => res.redirect('/'))
         .catch(error => {

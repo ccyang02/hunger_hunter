@@ -14,11 +14,12 @@
           <input type="text" class="form-control" name="email" placeholder="Enter email" value="{{email}}">
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password" placeholder="Enter password" value="{{password}}">
+          <input type="password" class="form-control" name="password" placeholder="Enter password" value="{{password}}"
+            minlength="3" maxlength="8">
         </div>
         <div class="input-group mb-3">
           <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm your password"
-            value="{{confirmPassword}}">
+            value="{{confirmPassword}}" minlength="3" maxlength="8">
         </div>
         <input class="btn btn-primary log-btn" type="submit" value="Register" />
       </form>
