@@ -36,7 +36,7 @@
             <label for="category" class="col-2 text-center pt-2">類別</label>
             <select class="col-10 form-control" id="category" name="category">
               {{#each categories}}
-              <option>{{this}}</option>
+              <option value="{{this}}" {{#if (isEqual restaurant.category this)}}selected{{/if}}>{{this}}</option>
               {{/each}}
             </select>
           </div>
@@ -77,35 +77,37 @@
           <div class="input-group mb-3">
             <label for="rating" class="col-2 text-center pt-2">評分<span class='star'>*</span></label>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="rating" id="rating1" value="1">
+              <input class="form-check-input" type="radio" name="rating" id="rating1" value="1"
+                {{#if (isEqual restaurant.rating 1)}}checked{{/if}}>
               <label class="form-check-label" for="rating1">1</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="rating" id="rating2" value="2">
+              <input class="form-check-input" type="radio" name="rating" id="rating2" value="2"
+                {{#if (isEqual restaurant.rating 2)}}checked{{/if}}>
               <label class="form-check-label" for="rating2">2</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="rating" id="rating3" value="3">
+              <input class="form-check-input" type="radio" name="rating" id="rating3" value="3"
+                {{#if (isEqual restaurant.rating 3)}}checked{{/if}}>
               <label class="form-check-label" for="rating3">3</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="rating" id="rating4" value="4">
+              <input class="form-check-input" type="radio" name="rating" id="rating4" value="4"
+                {{#if (isEqual restaurant.rating 4)}}checked{{/if}}>
               <label class="form-check-label" for="rating4">4</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="rating" id="rating5" value="5">
+              <input class="form-check-input" type="radio" name="rating" id="rating5" value="5"
+                {{#if (isEqual restaurant.rating 5)}}checked{{/if}}>
               <label class="form-check-label" for="rating5">5</label>
             </div>
-
-
           </div>
         </div>
 
         <div class="row mr-2">
           <div class="input-group mb-3">
             <label for="description" class="col-2 text-center pt-2">餐廳描述<span class='star'>*</span></label>
-            <textarea type="text" class="form-control col-10" name="description"
-              placeholder="*必填">{{restaurant.description}}</textarea>
+            <textarea type="text" class="form-control col-10" name="description">{{restaurant.description}}</textarea>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ const router = express.Router()
 const Hunter = require('../../models/hunter.js')
 const bodyParser = require('body-parser')
 const data = require('../../models/data/default')
+const { body, validationResult } = require('express-validator')
 
 router.use(bodyParser.urlencoded({ extended: true }))
 
@@ -10,9 +11,19 @@ router.get('/create', (req, res) => {
   return res.render('create', { categories: data.categories })
 })
 
-router.post('/create', (req, res) => {
+router.post('/create', [
+  body('name').notEmpty(),
+  body('rating').notEmpty(),
+  body('description').notEmpty()
+], (req, res) => {
+  const errors = validationResult(req)
   let restaurant = {}
   restaurant = Object.assign(restaurant, req.body)
+
+  if (!errors.isEmpty()) {
+    return res.render('create', { restaurant, errorMsg: true, categories: data.categories })
+  }
+
   restaurant.userId = req.user._id // add info about corresponding data owner
   // console.log(`I got ${req.body}`)
   Hunter.create(restaurant, function (error) {
